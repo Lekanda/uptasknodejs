@@ -6,8 +6,8 @@ const app = express();
 
 // Ruta para el Home
 app.use('/', (req, res) => {
-    res.send('holaas');
-})
+    res.send('hola desde el /index.js');
+});
 
 // Puerto de escucha de express
 app.listen(3000);
