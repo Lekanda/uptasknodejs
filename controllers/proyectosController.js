@@ -9,6 +9,7 @@ exports.formularioProyecto = (req, res) => {
     });
 }
 exports.nuevoProyecto = (req, res) => {
-    res.send('Enviaste el formulario');
-
+    // res.send('Enviaste el formulario');
+    // Enviar a consola lo que el usuario escriba
+    console.log(req.body);
 }
