@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 
 // Option 1: Passing parameters separately
-const sequelize = new Sequelize('uptasknode', 'root', 'root', {
+const db = new Sequelize('uptasknode', 'root', 'root', {
   host: 'localhost',
   dialect: 'mysql',
   port: '3306',
@@ -17,3 +17,5 @@ const sequelize = new Sequelize('uptasknode', 'root', 'root', {
       idle:10000
   }
 });
+
+module.exports = db;
