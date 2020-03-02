@@ -1,3 +1,5 @@
+const Proyectos = require('../models/Proyectos')
+
 exports.proyectosHome = (req, res) => {
     res.render('index', {
         nombrePagina: 'Proyectos'
@@ -20,15 +22,19 @@ exports.nuevoProyecto = (req, res) => {
     let errores = [];
     if(!nombre) {
         errores.push({'texto':'Agrega un Nombre al Proyecto'});
+        
     }
-
+    
     // Si hay errores
     if(errores.length>0) {
+        console.log(nombre);
         res.render('nuevo-proyecto', {
             nombrePagina: 'Nuevo Proyecto',
             errores
         })
     } else {
         // No hay errores, Insertar en la DB
-    }
+    }   Proyectos.create({ nombre })
+            .then(() => console.log('Insertado Correctamente'))
+            .catch(error => console.log(error));
 }
