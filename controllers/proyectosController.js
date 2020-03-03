@@ -14,10 +14,10 @@ exports.nuevoProyecto = async (req, res) => {
     // res.send('Enviaste el formulario');
 
     // Enviar a consola lo que el usuario escriba
-    console.log(req.body);
+    console.log(req.body.nombre);
 
     // Validar que tenga algo en el input
-    const { nombre } = req.body;
+    const nombre = req.body.nombre;
 
     let errores = [];
     if(!nombre) {
