@@ -1,4 +1,4 @@
-const Proyectos = require('../models/Proyectos')
+const Proyectos = require('../models/Proyectos');
 
 exports.proyectosHome = (req, res) => {
     res.render('index', {
@@ -10,7 +10,7 @@ exports.formularioProyecto = (req, res) => {
         nombrePagina: 'Nuevo Proyecto'
     });
 }
-exports.nuevoProyecto = (req, res) => {
+exports.nuevoProyecto = async (req, res) => {
     // res.send('Enviaste el formulario');
 
     // Enviar a consola lo que el usuario escriba
@@ -22,7 +22,6 @@ exports.nuevoProyecto = (req, res) => {
     let errores = [];
     if(!nombre) {
         errores.push({'texto':'Agrega un Nombre al Proyecto'});
-        
     }
     
     // Si hay errores
@@ -34,7 +33,9 @@ exports.nuevoProyecto = (req, res) => {
         })
     } else {
         // No hay errores, Insertar en la DB
-    }   Proyectos.create({ nombre })
-            .then(() => console.log('Insertado Correctamente'))
-            .catch(error => console.log(error));
+            const proyecto = await Proyectos.create({ nombre });
+            res.redirect('/');
+            // .then(() => console.log('Insertado Correctamente'))
+            // .catch(error => console.log(error))
+        }
 }
