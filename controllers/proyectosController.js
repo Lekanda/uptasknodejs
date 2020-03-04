@@ -5,7 +5,7 @@ exports.proyectosHome = async (req, res) => {
     console.log(proyectos);
     
     res.render('index', {
-        nombrePagina: 'Proyectos',
+        nombrePagina: 'Proyectos ',
         proyectos
     });
 }

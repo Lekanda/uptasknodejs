@@ -15,14 +15,11 @@ db.sync()
     .then(() => console.log('Conectado al Servidor'))
     .catch(error => console.log(error))
     
-
 // Crear un aplicacion express
 const app = express();
 
-
 //Donde cargar los archivos Estaticos
 app.use(express.static('public'));
-
 // Habilitar PUG
 app.set('view engine', 'pug');
 // Añadir carpeta de las vistas
@@ -32,7 +29,13 @@ app.set('views', path.join(__dirname, './views'));
 app.use((req, res, next) => {
     res.locals.vardump = helpers.vardump;
     next();
-})
+});
+// Primer Middleware
+// app.use((req, res, next) => {
+//     const fecha = new Date();    
+//     res.locals.year = fecha.getFullYear();
+//     next();
+// });
 
 // Habilitar Body-Parser para leer datos del formulario
 app.use(bodyParser.urlencoded({extended: true}));
