@@ -1,8 +1,12 @@
 const Proyectos = require('../models/Proyectos');
 
-exports.proyectosHome = (req, res) => {
+exports.proyectosHome = async (req, res) => {
+    const proyectos = await Proyectos.findAll();
+    console.log(proyectos);
+    
     res.render('index', {
-        nombrePagina: 'Proyectos'
+        nombrePagina: 'Proyectos',
+        proyectos
     });
 }
 exports.formularioProyecto = (req, res) => {
@@ -18,25 +22,23 @@ exports.nuevoProyecto = async (req, res) => {
 
     // Validar que tenga algo en el input
     const nombre = req.body.nombre;
-
     let errores = [];
-    if(!nombre) {
+    if(!nombre || nombre === '') {
         errores.push({'texto':'Agrega un Nombre al Proyecto'});
     }
     
     // Si hay errores
-    if(errores.length>0) {
-        console.log(nombre);
-        res.render('nuevo-proyecto', {
-            nombrePagina: 'Nuevo Proyecto',
+    if(errores.length > 0 ){
+        res.render('nuevoProyecto', {
+            nombrePagina : 'Nuevo Proyecto',
             errores
         })
     } else {
         // No hay errores, Insertar en la DB
-            
             const proyecto = await Proyectos.create({ nombre });
             res.redirect('/');
             // .then(() => console.log('Insertado Correctamente'))
             // .catch(error => console.log(error))
-        }
+    }
 }
+
