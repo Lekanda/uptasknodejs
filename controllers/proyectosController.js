@@ -17,10 +17,10 @@ exports.nuevoProyecto = async (req, res) => {
     // res.send('Enviaste el formulario');
 
     // Enviar a consola lo que el usuario escriba
-    console.log(req.body.nombre);
+    // console.log(req.body.nombre);
 
     // Validar que tenga algo en el input
-    const nombre = req.body.nombre;
+    const {nombre} = req.body.nombre;
     let errores = [];
     if(!nombre || nombre === '') {
         errores.push({'texto':'Agrega un Nombre al Proyecto'});
@@ -28,9 +28,10 @@ exports.nuevoProyecto = async (req, res) => {
     
     // Si hay errores
     if(errores.length > 0 ){
-        res.render('nuevoProyecto', {
+        res.render('nuevo-proyecto', {
             nombrePagina : 'Nuevo Proyecto',
-            errores
+            errores,
+            proyectos
         })
     } else {
         // No hay errores, Insertar en la DB
