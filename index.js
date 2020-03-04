@@ -4,9 +4,7 @@ const routes = require('./routes');
 const path = require('path');
 const bodyParser = require('body-parser');
 // const expressValidator = require('express-validator');
-
-// Helpers con algunas funciones
-const helpers = require('./helpers');
+const helpers = require('./helpers');// Helpers con algunas funciones
 
 // Crear la conexion la DB
 const db = require('./config/db');
@@ -27,15 +25,17 @@ app.set('views', path.join(__dirname, './views'));
 
 //pasar vardump a la APP
 app.use((req, res, next) => {
+
     res.locals.vardump = helpers.vardump;
     next();
 });
+
 // Primer Middleware
-// app.use((req, res, next) => {
-//     const fecha = new Date();    
-//     res.locals.year = fecha.getFullYear();
-//     next();
-// });
+app.use((req, res, next) => {
+    const fecha = new Date();    
+    res.locals.year = fecha.getFullYear();
+    next();
+});
 
 // Habilitar Body-Parser para leer datos del formulario
 app.use(bodyParser.urlencoded({extended: true}));
