@@ -20,7 +20,7 @@ exports.nuevoProyecto = async (req, res) => {
     // console.log(req.body.nombre);
 
     // Validar que tenga algo en el input
-    const {nombre} = req.body.nombre;
+    const nombre = req.body.nombre;
     let errores = [];
     if(!nombre || nombre === '') {
         errores.push({'texto':'Agrega un Nombre al Proyecto'});
@@ -42,3 +42,8 @@ exports.nuevoProyecto = async (req, res) => {
     }
 }
 
+exports.proyectoPorUrl = (req,res) => {
+    // res.send('Listo');
+    res.send(req.params.url);
+    
+}
