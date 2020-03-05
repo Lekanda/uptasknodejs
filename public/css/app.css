@@ -207,6 +207,7 @@ body.index {
     background-color: #607D8B;
     color: rgb(243, 242, 248);
     padding: 2rem;
+    border-radius: 10px;
 }
 .contenido-principal h2 {
     font-size: 1.4rem;
