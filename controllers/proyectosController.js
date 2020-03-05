@@ -70,3 +70,13 @@ exports.proyectoPorUrl = async(req,res,next) => {
         proyectos
     })
 }
+
+exports.formularioEditar = async(req,res) => {
+    const proyectos = await Proyectos.findAll();
+
+    // Render a la vista
+    res.render('nuevo-proyecto', {
+        nombrePagina: 'Editar Proyecto',
+        proyectos
+    })
+}

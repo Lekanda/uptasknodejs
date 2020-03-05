@@ -79,17 +79,32 @@ body {
     text-transform: uppercase;
     border: none;
     font-weight: 900;
-    width: 250px;
+    width: 300px;
     margin:0  auto;
-    margin-left: 14px;
+    margin-left: 0px;
 
     display: flex;
     align-items: center;
-    line-height: 0;
+    line-height: 1;
+}
+.boton2 {
+    background-color: #FDD835;
+    text-align: center;
+    transition: background-color .5s ease-in-out;
+    padding: 2rem;
+    text-transform: uppercase;
+    border: none;
+    font-weight: 900;
+    width: 225px;
+    margin:15 auto;
+    margin-left: 0px;
+    display: flex;
+    align-items: center;
+    line-height: 2;
 }
 .boton span {
     font-size: 2.2rem;
-    margin-left: 14px;
+    margin-left: 7px;
 }
 
 .boton:hover {
@@ -131,7 +146,7 @@ body.index {
 /*** sidebar**/
 .contenedor-proyectos {
     height: 100%;
-    max-width: 300px;
+    max-width: 400px;
     background-color: #607D8B;
     padding-top: 1rem;
 }
@@ -186,10 +201,17 @@ body.index {
 }
 .contenido-principal h1 {
     font-size: 1.8rem;
+    border-style: groove;
+    border-color: #455A64;
+    border-width: 7px;
+    background-color: #607D8B;
+    color: rgb(243, 242, 248);
+    padding: 2rem;
 }
 .contenido-principal h2 {
     font-size: 1.4rem;
     margin-top: 2rem;
+    border-style: inset;
 }
 .contenido-principal h1 span {
     font-weight: 400;
