@@ -13,17 +13,17 @@ btnEliminar.addEventListener('click', () => {
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
         confirmButtonText: 'Si, Borralo!',
-        cancelButtonText: 'No, Cancelar'
+        cancelButtonText: 'No, Cancelar'// Este no sale, hay que ponerlo a mano
     }).then((result) => {
     if (result.value) {
         Swal.fire(
-        'Borrado!',
-        'Tu Archivo ha sido Borrado.',
+        'Proyecto Borrado!',
+        'Tu Proyecto se ha sido Borrado.',
         'success'
         );
         //redireccionar al inicio
         setTimeout(() => {
-            window.location.href = '/';
+            window.location.href = '/'
         }, 3000);
     }
     })
