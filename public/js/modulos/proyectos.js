@@ -25,24 +25,24 @@ if(btnEliminar) {
             // Enviar Peticion a Axios
             const url = `${location.origin}/proyectos/${urlProyecto}`;
 
-            axios.delete(url, {params: urlProyecto})
+            axios.delete(url, {params: {urlProyecto}})
                 .then(function(respuesta){
                     console.log(respuesta);
-                    
-                })
+                    Swal.fire(
+                        'Proyecto Borrado!',
+                        // 'Tu Proyecto se ha sido Borrado.',
+                        respuesta.data,
+                        'success'
+                        );
+                        // redireccionar al inicio
+                        setTimeout(() => {
+                            window.location.href = '/'
+                        }, 3000);
+                });
             // console.log(url);
-            return;
-            
-            Swal.fire(
-            'Proyecto Borrado!',
-            'Tu Proyecto se ha sido Borrado.',
-            'success'
-            );
-            //redireccionar al inicio
-            setTimeout(() => {
-                window.location.href = '/'
-            }, 3000);
+            // return;
         }
         })
     })
 }
+export default btnEliminar;
