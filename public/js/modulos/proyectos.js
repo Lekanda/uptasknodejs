@@ -35,9 +35,8 @@ if(btnEliminar) {
                         'success'
                         );
                         // redireccionar al inicio
-                        setTimeout(() => {
-                            window.location.href = '/'
-                        }, 3000);
+                        
+                        window.location.href = '/'
                 })
                 .catch(() => {
                     Swal.fire({
