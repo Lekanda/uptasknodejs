@@ -14,5 +14,4 @@ const Tareas = db.define('tareas', {
 Tareas.belongsTo(Proyectos);
 // Proyectos.hasMany(Tareas);
 
-
 module.exports = Tareas;
