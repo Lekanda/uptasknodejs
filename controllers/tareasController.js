@@ -5,7 +5,7 @@ exports.agregarTarea = async (req,res,next) =>{
     // Obtenemos el Proyecto actual
     const proyecto = await Proyectos.findOne({where: {url: req.params.url}});
     console.log(proyecto);
-    console.log(req.body);
+    // console.log(req.body);
     // Leer el valor del Input
     const {tarea} = req.body;
     // estado 0 = Incompleto y ID de Proyecto
@@ -22,6 +22,24 @@ exports.agregarTarea = async (req,res,next) =>{
     res.redirect(`/proyectos/${req.params.url}`);
 }
 
-exports.cambiarEstadoTarea = (req,res,next)=> {
-    res.send('Todo bien...');
+exports.cambiarEstadoTarea = async (req,res,next)=> {
+    // console.log(req.params);
+    const { id } = req.params;
+    const tarea = await Tareas.findOne({where: { id: id }});
+    // console.log(tarea);
+
+    // Cambiar el Estado
+    let estado = 0;
+    if(tarea.estado === estado) {
+        estado = 1;
+    }
+    tarea.estado = estado;
+
+    const resultado = await tarea.save();
+
+    if (!resultado) {
+        return next();
+    }
+    
+    res.status(200).send('Actualizado....');
 }

@@ -14,9 +14,12 @@ if (tareas) {
             // Request hacia /tareas/:id
             const url = `${location.origin}/tareas/${idTarea}`;
             // console.log(url);
-            axios.patch(url, { idTarea})
+            axios.patch(url, { idTarea })
                 .then(function(respuesta){
-                    console.log(respuesta);
+                    // console.log(respuesta);
+                    if (respuesta.status === 200) {
+                        icono.classList.toggle('completo');
+                    }
                 })
         }
     });
