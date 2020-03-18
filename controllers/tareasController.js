@@ -15,7 +15,7 @@ exports.agregarTarea = async (req,res,next) =>{
     // Insertar en la DB.Los datos en el mismo orden que la tabla de la DB(tareas)
     const resultado = await Tareas.create({ tarea, estado, proyectoId});
 
-    if(!resultado){// Sí no hay resultado continua con lo siguiente
+    if(!resultado ){// Sí no hay resultado continua con lo siguiente
         return next();
     }
     // Redireccionar
@@ -27,14 +27,12 @@ exports.cambiarEstadoTarea = async (req,res,next)=> {
     const { id } = req.params;
     const tarea = await Tareas.findOne({where: { id: id }});
     // console.log(tarea);
-
     // Cambiar el Estado
     let estado = 0;
     if(tarea.estado === estado) {
         estado = 1;
     }
     tarea.estado = estado;
-
     const resultado = await tarea.save();
 
     if (!resultado) {
@@ -42,4 +40,8 @@ exports.cambiarEstadoTarea = async (req,res,next)=> {
     }
     
     res.status(200).send('Actualizado....');
+}
+
+exports.eliminarTarea = async (req,res)=> {
+    res.send('Eliminando...');
 }
