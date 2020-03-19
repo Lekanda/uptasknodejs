@@ -4,7 +4,7 @@ const Tareas = require('../models/Tareas');
 exports.agregarTarea = async (req,res,next) =>{
     // Obtenemos el Proyecto actual
     const proyecto = await Proyectos.findOne({where: {url: req.params.url}});
-    console.log(proyecto);
+    // console.log(proyecto);
     // console.log(req.body);
     // Leer el valor del Input
     const {tarea} = req.body;
@@ -43,5 +43,16 @@ exports.cambiarEstadoTarea = async (req,res,next)=> {
 }
 
 exports.eliminarTarea = async (req,res)=> {
-    res.send('Eliminando...');
+    console.log(req.query);
+    console.log(req.params);
+    
+    const { id } = req.params;
+    //Eliminar la Tarea
+    const resultado = await Tareas.destroy({where: {id}});
+    if (!resultado) {
+        return next();
+    }
+
+
+    res.status(200).send('Tarea Eliminado');
 }
