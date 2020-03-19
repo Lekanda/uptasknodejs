@@ -288,7 +288,7 @@ body.index {
 /** Linea de Avance **/
 .barra-avance {
     height: 30px;
-    border: 1px solid #999;
+    border: 0px solid #999;
     max-width: 800px;
     width: 90%;
     margin: 0 auto;
