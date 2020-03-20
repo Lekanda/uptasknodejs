@@ -1,5 +1,6 @@
 import axios from "axios";
 import Swal from 'sweetalert2';
+import {actualizarAvance} from '../funciones/avance';
 
 const tareas = document.querySelector('.listado-pendientes');
 
@@ -20,6 +21,7 @@ if (tareas) {
                     // console.log(respuesta);
                     if (respuesta.status === 200) {
                         icono.classList.toggle('completo');
+                        actualizarAvance();
                     }
                 })
         }
@@ -51,6 +53,7 @@ if (tareas) {
                             //Eliminar el Nodo
                             tareaHTML.parentElement.removeChild(tareaHTML);
                             // Opcional una Alerta
+                            actualizarAvance();
                             Swal.fire(
                                 'Tarea Eliminada Correctamente',
                                 respuesta.data,
