@@ -12,6 +12,5 @@ const Tareas = db.define('tareas', {
     estado: Sequelize.INTEGER(1)
 });
 Tareas.belongsTo(Proyectos);
-// Proyectos.hasMany(Tareas);
 
 module.exports = Tareas;

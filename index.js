@@ -3,13 +3,14 @@ const express= require('express');
 const routes = require('./routes');
 const path = require('path');
 const bodyParser = require('body-parser');
-// const expressValidator = require('express-validator');
+const expressValidator = require('express-validator');
 const helpers = require('./helpers');// Helpers con algunas funciones
 
 // Crear la conexion la DB
 const db = require('./config/db');
 require('./models/Proyectos');
 require('./models/Tareas');
+require('./models/Usuarios');
 db.sync()
     .then(() => console.log('Conectado al Servidor'))
     .catch(error => console.log(error))
