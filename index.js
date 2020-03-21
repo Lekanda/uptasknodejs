@@ -4,6 +4,7 @@ const routes = require('./routes');
 const path = require('path');
 const bodyParser = require('body-parser');
 const expressValidator = require('express-validator');
+const flash = require('connect-flash');
 const helpers = require('./helpers');// Helpers con algunas funciones
 
 // Crear la conexion la DB
@@ -18,12 +19,21 @@ db.sync()
 // Crear un aplicacion express
 const app = express();
 
+// Habilitar Body-Parser para leer datos del formulario
+app.use(bodyParser.urlencoded({extended: true}));
+
+// Agregamos express validator a toda la aplicación
+// app.use(expressValidator());
+
 //Donde cargar los archivos Estaticos
 app.use(express.static('public'));
 // Habilitar PUG
 app.set('view engine', 'pug');
 // Añadir carpeta de las vistas
 app.set('views', path.join(__dirname, './views'));
+
+//Agregar Flash Messages
+app.use(flash());
 
 //pasar vardump a la APP
 app.use((req, res, next) => {
@@ -38,12 +48,6 @@ app.use((req, res, next) => {
     res.locals.year = fecha.getFullYear();
     next();
 });
-
-// Habilitar Body-Parser para leer datos del formulario
-app.use(bodyParser.urlencoded({extended: true}));
-
-// Agregamos express validator a toda la aplicación
-// app.use(expressValidator());
 
 //Habilitar Rutas
 app.use('/', routes() );

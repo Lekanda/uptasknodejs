@@ -69,7 +69,7 @@ exports.proyectoPorUrl = async(req,res,next) => {
             { model: Proyectos}
         ]
     });
-    console.log(tareas);
+    // console.log(tareas);
 
     if(!proyecto) return next();
 
