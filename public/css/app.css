@@ -260,11 +260,11 @@ body.index {
     color: #00B762;
 }
 .alerta {
-    padding: .5rem;
+    padding: .2rem;
     text-align: center;
-    font-size: .9rem;
-    font-weight: 900;
-    max-width: 300px;
+    font-size: .5rem;
+    font-weight: 600;
+    max-width: 400px;
     margin: 0 auto 1rem auto;
     text-transform: uppercase;
 }
