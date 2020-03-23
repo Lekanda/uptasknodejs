@@ -12,13 +12,13 @@ const usuariosController = require('../controllers/usuariosController');
 module.exports = function() {
     // Ruta para el Home
     router.get('/', proyectosController.proyectosHome);
-
+    // Rutas para nuevo proyecto
     router.get('/nuevo-proyecto', proyectosController.formularioProyecto);
-
     router.post('/nuevo-proyecto', 
         body('nombre').not().isEmpty().trim().escape(),
         proyectosController.nuevoProyecto
     );
+
     // Listar Proyecto
     router.get('/proyectos/:url', proyectosController.proyectoPorUrl);
     // Actualizar el Proyecto
@@ -39,6 +39,9 @@ module.exports = function() {
     // Crear nueva cuenta
     router.get('/crear-cuenta', usuariosController.formCrearCuenta);
     router.post('/crear-cuenta', usuariosController.crearCuenta);
+    //Iniciar Sesion
+    router.get('/iniciar-sesion', usuariosController.formIniciarSesion);
+
 
     return router;
 }

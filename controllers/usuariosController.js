@@ -6,6 +6,12 @@ exports.formCrearCuenta = (req,res) => {
     })
 }
 
+exports.formIniciarSesion = (req,res) => {
+    res.render('iniciarSesion', {
+        nombrePagina : 'Iniciar Sesion en UpTask'
+    })
+}
+
 exports.crearCuenta = async(req,res) => {
     // res.send('Enviaste el formulario');
     // **Leer los Datos**
