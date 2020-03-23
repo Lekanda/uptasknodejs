@@ -5,6 +5,9 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const expressValidator = require('express-validator');
 const flash = require('connect-flash');
+const session = require('express-session');
+const cookieParser = require('cookie-parser');
+
 const helpers = require('./helpers');// Helpers con algunas funciones
 
 // Crear la conexion la DB
@@ -19,26 +22,39 @@ db.sync()
 // Crear un aplicacion express
 const app = express();
 
+//Donde cargar los archivos Estaticos
+app.use(express.static('public'));
+
+// Habilitar PUG
+app.set('view engine', 'pug');
+
 // Habilitar Body-Parser para leer datos del formulario
 app.use(bodyParser.urlencoded({extended: true}));
 
-// Agregamos express validator a toda la aplicación
+// ***Agregamos express validator a toda la aplicación
 // app.use(expressValidator());
 
-//Donde cargar los archivos Estaticos
-app.use(express.static('public'));
-// Habilitar PUG
-app.set('view engine', 'pug');
+
 // Añadir carpeta de las vistas
 app.set('views', path.join(__dirname, './views'));
 
 //Agregar Flash Messages
 app.use(flash());
 
+//
+app.use(cookieParser());
+
+//Agregar Sessiones: Nos ayuda a ir entre las distintas paginas sin necesidad de volver a autenticar
+app.use(session({
+    secret: 'supersecreto',
+    resave: false,
+    saveUninitialized: false
+}));
+
 //pasar vardump a la APP
 app.use((req, res, next) => {
-
     res.locals.vardump = helpers.vardump;
+    res.locals.mensajes = req.flash();
     next();
 });
 
