@@ -4,6 +4,7 @@ const Tareas = require('../models/Tareas');
 exports.proyectosHome = async (req, res) => {
     const proyectos = await Proyectos.findAll();
     // console.log(proyectos);
+    console.log(res.locals.usuario);
     res.render('index', {
         nombrePagina: 'Proyectos '+ res.locals.year,
         proyectos

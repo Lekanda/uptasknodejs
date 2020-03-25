@@ -57,8 +57,11 @@ app.use(passport.session());
 
 //pasar vardump a la APP
 app.use((req, res, next) => {
+    // console.log(req.user);
     res.locals.vardump = helpers.vardump;
     res.locals.mensajes = req.flash();
+    res.locals.usuario = {...req.user} || null;
+    
     next();
 });
 
