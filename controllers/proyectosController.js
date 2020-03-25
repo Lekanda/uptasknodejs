@@ -42,7 +42,8 @@ exports.nuevoProyecto = async (req, res) => {
         })
     } else {
         // No hay errores, Insertar en la DB
-            await Proyectos.create({ nombre });
+            const usuarioId = res.locals.usuario.id;
+            await Proyectos.create({ nombre, usuarioId });
             res.redirect('/');
             // .then(() => console.log('Insertado Correctamente'))
             // .catch(error => console.log(error))
