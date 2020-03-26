@@ -99,6 +99,12 @@ exports.actualizarPassword = async (req,res) => {
     }
 
     // Hashear el Password
-    usuario.password = bcrypt.hashSync(usuario.password, bcrypt.genSaltSync(10) );
-    
+    usuario.password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10) );
+    usuario.token = null;
+    usuario.expiracion = null;
+
+    // Guardamos el nuevo 
+    await usuario.save();
+    req.flash('correcto', 'Tu Password se ha modficado correctamente');
+    res.redirect('/iniciar-sesion');
 }
