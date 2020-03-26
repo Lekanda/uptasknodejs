@@ -3,6 +3,9 @@ const Usuarios = require('../models/Usuarios');
 
 const crypto = require('crypto');
 
+const { Op } = require("sequelize");
+const bcrypt = require('bcrypt');
+
 
 exports.autenticarUsuario = passport.authenticate('local', {
     successRedirect: '/',
@@ -55,7 +58,7 @@ exports.enviarToken = async (req,res) => {
 }
 
 //Resetear Password
-exports.resetPassword = async (req,res) => {
+exports.validarToken = async (req,res) => {
     const usuario = await Usuarios.findOne({
         where:{
             token: req.params.token
@@ -73,4 +76,29 @@ exports.resetPassword = async (req,res) => {
         nombrePagina: 'Reestablecer Contraseña'
     })
     console.log(usuario);
+}
+
+// Metodo que Cambia el Password por uno Nuevo
+exports.actualizarPassword = async (req,res) => {
+    // Verifica el Token Valido perotambienla fecha de expiracion
+    // console.log(req.params.token);
+    const usuario = await Usuarios.findOne({
+        where: {
+            token: req.params.token,
+            expiracion: {
+                [Op.gte]: Date.now() 
+            }
+        }
+    });
+
+    // Verificamos sí el usuario existe
+    // console.log(usuario);
+    if(!usuario) {
+        req.flash('error', 'No valido');
+        res.redirect('/reestablecer');
+    }
+
+    // Hashear el Password
+    usuario.password = bcrypt.hashSync(usuario.password, bcrypt.genSaltSync(10) );
+    
 }
