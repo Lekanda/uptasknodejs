@@ -56,5 +56,21 @@ exports.enviarToken = async (req,res) => {
 
 //Resetear Password
 exports.resetPassword = async (req,res) => {
-    res.json(req.params.token);
+    const usuario = await Usuarios.findOne({
+        where:{
+            token: req.params.token
+        }
+    });
+
+    // Si no encuentra el Usuario
+    if(!usuario) {
+        req.flash('error', 'No valido');
+        res.redirect('/reestablecer');
+    }
+
+    // Formulario para Generar el Password
+    res.render('resetPassword', {
+        nombrePagina: 'Reestablecer Contraseña'
+    })
+    console.log(usuario);
 }
