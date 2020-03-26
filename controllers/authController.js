@@ -45,7 +45,7 @@ exports.enviarToken = async (req,res) => {
     // El Usuario Existe. Genera TOKEN
     usuario.token = crypto.randomBytes(20).toString('hex');
     // expiracion
-    usuario.expiracion = Date.now() + 3600000 ;// 1 hora
+    usuario.expiracion = Date.now() + 3600000;// 1 hora
     // console.log(token);
     // console.log(expiracion);
 
@@ -54,7 +54,8 @@ exports.enviarToken = async (req,res) => {
 
     // URL de Reset
     const resetUrl = `http://${req.headers.host}/reestablecer/${usuario.token}`;
-    console.log(resetUrl);
+    res.redirect(resetUrl);// CUIDADO puesto por mi
+    // console.log(resetUrl);
 }
 
 //Resetear Password
@@ -81,7 +82,7 @@ exports.validarToken = async (req,res) => {
 // Metodo que Cambia el Password por uno Nuevo
 exports.actualizarPassword = async (req,res) => {
     // Verifica el Token Valido perotambienla fecha de expiracion
-    // console.log(req.params.token);
+    console.log(req.params.token);
     const usuario = await Usuarios.findOne({
         where: {
             token: req.params.token,

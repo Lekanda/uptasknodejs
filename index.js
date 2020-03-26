@@ -76,3 +76,5 @@ app.use('/', routes() );
 
 // Puerto de escucha de express
 app.listen(3000);
+
+require('./handlers/email');
