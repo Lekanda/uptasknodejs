@@ -48,12 +48,14 @@ app.use(flash());
 //Agregar Cookie-Parser
 app.use(cookieParser());
 
-//Agregar Sessiones: Nos ayuda a ir entre las distintas paginas sin necesidad de volver a autenticar
+// Agregar Sessiones: Nos ayuda a ir entre las distintas paginas sin necesidad de volver a autenticar
 app.use(session({
     secret: 'supersecreto',// Firma el cookie
     resave: false,
     saveUninitialized: false
 }));
+
+
 // Agregamos Passport
 app.use(passport.initialize());
 app.use(passport.session());
