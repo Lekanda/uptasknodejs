@@ -5,8 +5,8 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const expressValidator = require('express-validator');
 const flash = require('connect-flash');
-// const session = require('express-session');
-const session = require('cookie-session');
+const session = require('express-session');
+// const session = require('cookie-session');
 const cookieParser = require('cookie-parser');
 const passport = require('./config/passport');
 //importar las variables
@@ -85,7 +85,7 @@ const port = process.env.PORT || 3000;
 
 
 app.listen(port, host, () =>{
-    console.log('El servidor esta funcionando');
+    console.log('El servidor esta Listo');
     
 })
 
