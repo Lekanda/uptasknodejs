@@ -5,8 +5,8 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const expressValidator = require('express-validator');
 const flash = require('connect-flash');
-// const session = require('express-session');
-const session = require('cookie-session');
+const session = require('express-session');
+// const session = require('cookie-session');
 const cookieParser = require('cookie-parser');
 const passport = require('./config/passport');
 //importar las variables
@@ -88,9 +88,5 @@ app.listen(port, host, () =>{
     console.log('El servidor esta funcionando');
     
 })
-
-
-
-
 
 // require('./handlers/email');// Manda llamar al mail
