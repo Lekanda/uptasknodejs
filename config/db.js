@@ -23,5 +23,4 @@ const db = new Sequelize(
       idle:10000
   }
 });
-
 module.exports = db;
