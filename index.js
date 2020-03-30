@@ -80,7 +80,7 @@ app.use((req, res, next) => {
 app.use('/', routes() );
 
 // Servidor y Puerto
-const host = process.env.HOST || 'localhost';
+const host = process.env.HOST || '0.0.0.0';
 const port = process.env.PORT || 3000;
 
 
