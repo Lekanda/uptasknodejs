@@ -79,15 +79,16 @@ app.use((req, res, next) => {
 //Habilitar Rutas
 app.use('/', routes() );
 
-
 // Servidor y Puerto
-const host = process.env.HOST || '0.0.0.0';
+const host = process.env.HOST || 'localhost';
 const port = process.env.PORT || 3000;
 
 
 app.listen(port, host, () =>{
     console.log('El servidor esta Listo');
+    
 })
+
 
 
 // require('./handlers/email');// Manda llamar al mail
